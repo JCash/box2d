@@ -62,6 +62,7 @@ if (CMAKE_C_COMPILER_ID MATCHES "GNU|Clang")
 endif()
 
 option(BOX2D_DISABLE_SIMD "Disable SIMD math (slower)" OFF)
+option(BOX2D_SIMD_USE_SSE2 "Restrict x86 SIMD math to SSE2" OFF)
 option(BOX2D_COMPILE_WARNING_AS_ERROR "Compile warnings as errors" OFF)
 option(BOX2D_DOUBLE_PRECISION "Enable double precision for large worlds" OFF)
 
@@ -76,6 +77,9 @@ if (BOX2D_DISABLE_SIMD)
 elseif (EMSCRIPTEN)
 	# core.h maps wasm onto the SSE2 path, the intrinsics only compile with simd128 enabled
 	set(BOX2D_SIMD_OPTIONS -msimd128 -msse2)
+endif()
+if (BOX2D_SIMD_USE_SSE2)
+	list(APPEND BOX2D_SIMD_DEFINITIONS BOX2D_SIMD_USE_SSE2)
 endif()
 
 # These are read by the library build, so they must precede add_subdirectory(src),

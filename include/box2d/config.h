@@ -20,6 +20,9 @@
 // Build the scalar fallback instead of AVX2/SSE2/NEON.
 // #define BOX2D_DISABLE_SIMD
 
+// Restrict x86 SIMD to SSE2. Other architectures keep their default SIMD.
+// #define BOX2D_SIMD_USE_SSE2
+
 // Enable internal validation in debug builds.
 // #define BOX2D_VALIDATE
 

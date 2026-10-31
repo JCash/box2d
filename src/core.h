@@ -50,6 +50,8 @@
 // Define SIMD
 #if defined( BOX2D_DISABLE_SIMD )
 	#define B2_SIMD_NONE
+#elif defined( BOX2D_SIMD_USE_SSE2 ) && defined( B2_CPU_X86_X64 )
+	#define B2_SIMD_SSE2
 #else
 	#if defined( B2_CPU_X86_X64 )
 		#define B2_SIMD_SSE2
